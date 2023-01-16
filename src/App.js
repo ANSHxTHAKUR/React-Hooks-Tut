@@ -1,25 +1,57 @@
-import logo from './logo.svg';
+import Comp from './Component/Comp1'
+import React ,{useState ,useEffect ,createContext } from 'react';
+
 import './App.css';
 
+const context = createContext();
+
 function App() {
+  
+
+ const [value,setValue]= useState(0);
+ const [value2,setValue2]= useState(0);
+
+ 
+
+ useEffect(()=>{
+
+  
+   return console.log("Running");
+ 
+
+ },[value])
+
+ const addHandler =() =>{
+      setValue(value+1);
+     
+      
+    
+   }
+   const minusHandler =() =>{
+   
+    setValue2(value2+1);
+ }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <context.Provider value={value}>
+<div >
+
+<h1>React Hooks</h1>
+
+<button onClick={addHandler}>value1</button>
+<p>{value}
+</p>
+<p>{value2}</p>
+
+<button onClick={minusHandler}>value2</button>
+
+<Comp />
+
+</div>
+
+    </context.Provider>
   );
 }
 
 export default App;
+export  {context};
